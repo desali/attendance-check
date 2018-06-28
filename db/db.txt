@@ -1,0 +1,28 @@
+Student:
+  id:integer
+  fullname:string
+  email:string
+  password:string
+
+Teacher:
+  id:integer
+  fullname:string
+  email:string
+  password:string
+
+Course:
+  id:integer
+  name:string
+  teacher_id:integer
+
+Group:
+  id:integer
+  name:string
+  course_id:integer
+
+Attendance:
+  id:integer
+  teacher_id:integer
+  course_id:integer
+  group_id:integer
+  student_id:integer
