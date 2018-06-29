@@ -7,8 +7,8 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      # Success
-
+      log_in_st @student
+      redirect_to root_url
     else
       render 'new'
     end
