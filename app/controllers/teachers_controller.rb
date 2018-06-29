@@ -7,8 +7,8 @@ class TeachersController < ApplicationController
     @teacher = Teacher.new(teacher_params)
 
     if @teacher.save
-      # Success
-
+      log_in_tch @teacher
+      redirect_to root_url
     else
       render 'new'
     end

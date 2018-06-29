@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_06_29_122123) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.integer "teacher_id"
+    t.integer "group_count"
   end
 
   create_table "groups", force: :cascade do |t|

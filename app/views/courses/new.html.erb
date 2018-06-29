@@ -1,0 +1,13 @@
+<% if @course.errors.any? %>
+  <%= @course.errors.full_messages %>
+<% end %>
+
+<%= form_for(@course, url: courses_new_path) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :group_count %>
+  <%= f.number_field :group_count %>
+
+  <%= f.submit "Create course" %>
+<% end %>

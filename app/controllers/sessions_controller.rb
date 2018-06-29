@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if (user && user.authenticate(params[:session][:password]))
       # GO TO ADMINPAGE
       log_in_st user
-      #redirect_to user
+      redirect_to root_url
     else
       flash.now[:danger] = "Invalid login or password"
       render 'new_st'
@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
     user = Teacher.find_by_email(params[:session][:email])
     if (user && user.authenticate(params[:session][:password]))
       # GO TO ADMINPAGE
-      login_tch user
-      #redirect_to user
+      log_in_tch user
+      redirect_to root_url
     else
       # ERROR MESSAGE
       render 'new_tch'
@@ -36,6 +36,6 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  
+
 
 end

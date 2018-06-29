@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   post "/edu/signup", to: "teachers#create"
   get "/edu/signup", to: "teachers#new"
 
+  get "/courses/new", to: "courses#new"
+  post "/courses/new", to: "courses#create"
+
 end

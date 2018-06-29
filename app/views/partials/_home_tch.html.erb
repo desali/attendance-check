@@ -1,1 +1,8 @@
-Teacher
+<%= link_to 'Create course', courses_new_path %>
+
+<br>
+
+<% get_teacher_courses.each do |course| %>
+  <%= "Course name: #{course.name}, #{course.group_count} groups" %>
+  <br>
+<% end %>
