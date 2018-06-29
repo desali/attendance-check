@@ -3,8 +3,11 @@
 <% end %>
 
 <%= form_for(@teacher, url: edu_signup_path) do |f| %>
-  <%= f.label :fullname %>
-  <%= f.text_field :fullname %>
+  <%= f.label :firstname %>
+  <%= f.text_field :firstname %>
+
+  <%= f.label :lastname %>
+  <%= f.text_field :lastname %>
 
   <%= f.label :email %>
   <%= f.email_field :email %>

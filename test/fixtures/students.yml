@@ -3,9 +3,9 @@
 # Table name: students
 #
 #  id              :integer          not null, primary key
-#  fullname        :string
+#  firstname       :string
+#  lastname        :string
 #  email           :string
-#  password        :string
 #  password_digest :string
 #
 
