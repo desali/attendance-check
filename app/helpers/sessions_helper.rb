@@ -18,10 +18,10 @@ module SessionsHelper
   end
 
   def st_logged_in?
-    !current_user_st.nil
+    !current_user_st.nil?
   end
   def tch_logged_in?
-    !current_user_tch.nil
+    !current_user_tch.nil?
   end
 
   def log_out
