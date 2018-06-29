@@ -30,10 +30,10 @@ module PagesHelper
       return nil
     end
 
-    group_names = course.select(:name).to_sql
-    group_ids = course.select(:id).to.sql
-    @arr[:group_names] = course.connection.select_values(group_names)
-    @arr[:group_ids] = course.connection.select_values(group_ids)
+    group_names = course.groups.select(:name).to_sql
+    group_ids = course.groups.select(:id).to_sql
+    @arr[:group_names] = course.groups.connection.select_values(group_names)
+    @arr[:group_ids] = course.groups.connection.select_values(group_ids)
     return @arr
   end
 
