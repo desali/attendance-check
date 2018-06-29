@@ -10,17 +10,17 @@ module PagesHelper
 
   def teachers_name? # Returns all teacher's names in map\dict\hash
     @arr = Hash.new()
-    @arr[:firstname] = Teacher.connection.select_values(Teacher.select(:firstname).to_sql)
-    @arr[:lastname] = Teacher.connection.select_values(Teacher.select(:lastname).to_sql)
-    @arr[:teacher_id] = Teacher.connection.select_values(Teacher.select(:id).to_sql)
+    @arr[:firstnames] = Teacher.connection.select_values(Teacher.select(:firstname).to_sql)
+    @arr[:lastnames] = Teacher.connection.select_values(Teacher.select(:lastname).to_sql)
+    @arr[:teacher_ids] = Teacher.connection.select_values(Teacher.select(:id).to_sql)
     return @arr
   end
   def what_is_courses_of?(t_id) # Retursn all courses of given teacher in string array
     teacher = Teacher.find_by(id: t_id)
     tname = teacher.courses.select(:name).to_sql
     tid = teacher.courses.select(:id).to_sql
-    @arr[:course_name] = teacher.courses.connection.select_values(tname)
-    @arr[:course_id] = teacher.courses.connection.select_values(tid)
+    @arr[:course_names] = teacher.courses.connection.select_values(tname)
+    @arr[:course_ids] = teacher.courses.connection.select_values(tid)
     return @arr
   end
   def what_is_groups_of?(course_id)
@@ -35,6 +35,10 @@ module PagesHelper
     @arr[:group_names] = course.groups.connection.select_values(group_names)
     @arr[:group_ids] = course.groups.connection.select_values(group_ids)
     return @arr
+  end
+
+  def confirm
+
   end
 
 end
