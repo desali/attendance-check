@@ -1,7 +1,0 @@
-<% if (session[:user_type]==1) %>
-  <%= render 'partials/home_st' %>
-<% elsif (session[:user_type]==2) %>
-  <%= render 'partials/home_tch' %>
-<% else %>
-  <%= render "partials/default" %>
-<% end %>

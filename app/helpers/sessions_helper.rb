@@ -1,11 +1,9 @@
 module SessionsHelper
   def log_in_tch(user)
     session[:user_id] = user.id
-    session[:user_type] = 2
   end
   def log_in_st(user)
     session[:user_id] = user.id
-    session[:user_type] = 1
   end
 
   def current_user_st
