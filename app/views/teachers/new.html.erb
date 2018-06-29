@@ -1,0 +1,19 @@
+<% if @teacher.errors.any? %>
+  <%= @teacher.errors.full_messages %>
+<% end %>
+
+<%= form_for(@teacher, url: edu_signup_path) do |f| %>
+  <%= f.label :fullname %>
+  <%= f.text_field :fullname %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation, "Confirmation" %>
+  <%= f.password_field :password_confirmation %>
+
+  <%= f.submit "Create my teacher account", class: "btn btn-primary" %>
+<% end %>

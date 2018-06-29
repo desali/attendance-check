@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2018_06_29_122123) do
   create_table "students", force: :cascade do |t|
     t.string "fullname"
     t.string "email"
-    t.string "password"
     t.string "password_digest"
     t.index ["email"], name: "index_students_on_email", unique: true
   end
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(version: 2018_06_29_122123) do
   create_table "teachers", force: :cascade do |t|
     t.string "fullname"
     t.string "email"
-    t.string "password"
     t.string "password_digest"
     t.index ["email"], name: "index_teachers_on_email", unique: true
   end
