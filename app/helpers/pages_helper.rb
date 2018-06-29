@@ -1,5 +1,5 @@
 module PagesHelper
   def get
-      Student.first.fullname
+      return "#{Student.first.firstname} #{Student.first.lastname}"
   end
 end
