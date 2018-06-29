@@ -2,10 +2,11 @@
 #
 # Table name: teachers
 #
-#  id       :integer          not null, primary key
-#  fullname :string
-#  email    :string
-#  password :string
+#  id              :integer          not null, primary key
+#  fullname        :string
+#  email           :string
+#  password        :string
+#  password_digest :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
