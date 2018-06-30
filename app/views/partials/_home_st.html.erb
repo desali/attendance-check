@@ -1,5 +1,21 @@
 <% st_logged_in? %>
-<% teachers_name? %>
-<%= what_is_courses_of?(@arr[:teacher_ids][0]) %>
-<%= @arr[:teacher_ids][0] %>
-<%= what_is_groups_of?(@arr[:course_ids]) %>
+<% @current_user.courses.all.each do |x| %>
+  <%= "#{x.name} #{group?(x.id).name} #{teacher_fullname?(x.teacher_id)}" %>
+  <%= link_to "DELETE", group_leave_path(group?(x.id)), method: :delete, data: {confirm: "Are you sure?"} %>
+  <br>
+<% end %>
+
+<br>
+<br>
+
+<% teachers? %>
+<%= select("teacher", "id", @teachers.collect {|u| [teacher_fullname?(u), u.id]}, {:include_blank => 'None'}, {:class => 'teachers_selection'}) %><br>
+<% if !@course.nil? %>
+  <% select("course", "id", @courses.collect {|u| [u.name, u.id]}, {:include_blank => 'None'}, {:class => 'courses_selection'}) %> <br>
+<% end %>
+<br>
+<br>
+<%= what_is_courses_of?(@teachers.second) %># Короче! в Js будут выбиратся элементы из массива
+<%= @courses.first.name %>
+<%= what_is_groups_of?(@courses.first) %>
+<% link_to "Confirm", group_join_path(@groups.first.id) %>

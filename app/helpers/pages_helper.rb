@@ -17,38 +17,30 @@ module PagesHelper
     return "#{@student.firstname} #{@student.lastname}"
   end
 
-  def teachers_name? # Returns all teacher's names in map\dict\hash
-    @arr = Hash.new()
-    @arr[:firstnames] = Teacher.connection.select_values(Teacher.select(:firstname).to_sql)
-    @arr[:lastnames] = Teacher.connection.select_values(Teacher.select(:lastname).to_sql)
-    @arr[:teacher_ids] = Teacher.connection.select_values(Teacher.select(:id).to_sql)
-    return @arr
-  end
-  def what_is_courses_of?(t_id) # Retursn all courses of given teacher in string array
-    teacher = Teacher.find_by(id: t_id)
-    tname = teacher.courses.select(:name).to_sql
-    tid = teacher.courses.select(:id).to_sql
-    @arr[:course_names] = teacher.courses.connection.select_values(tname)
-    @arr[:course_ids] = teacher.courses.connection.select_values(tid)
-    return @arr
+  def teachers? # Return all teachers
+    @teachers = Teacher.all
   end
 
-  def what_is_groups_of?(course_id)
-    course = Course.find_by(id: course_id)
+  def teacher_fullname?(teacher)
+    teacher.firstname+" "+teacher.lastname
+  end
 
+  def group?(cid) # Return group for a student, based on Course_id
+    @current_user.groups.where(course_id: cid).first
+  end
+
+  def what_is_courses_of?(teacher) # Return all courses of given teacher
+    if (teacher.courses.nil?) # Check if teacher has 0 courses
+      return nil
+    end
+    @courses = teacher.courses.all
+  end
+
+  def what_is_groups_of?(course) # Return all groups of given course of teacher
     if (course.nil?) # Check if teacher has 0 courses
       return nil
     end
-
-    group_names = course.groups.select(:name).to_sql
-    group_ids = course.groups.select(:id).to_sql
-    @arr[:group_names] = course.groups.connection.select_values(group_names)
-    @arr[:group_ids] = course.groups.connection.select_values(group_ids)
-    return @arr
-  end
-
-  def confirm()
-
+    @groups = course.groups.all
   end
 
 end
