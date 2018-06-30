@@ -27,5 +27,6 @@ Rails.application.routes.draw do
   delete "/group/:id/leave", to: "students#leave", as: "group_leave"
 
   get "/get_courses", to: "pages#get_courses"
+  post "/profile/confirm/:nid", to: "pages#confirm", as: "confirm"
 
 end

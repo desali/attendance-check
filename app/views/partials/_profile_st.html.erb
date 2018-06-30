@@ -14,5 +14,6 @@ Student profile
 	<% course?(x.group_id) %>
 	<% teacher?(@course.id) %>
 	<%= @course.name + " | " + teacher_fullname?(@teacher)%>
+	<%= link_to "Attend!", confirm_path(x.id), method: :post %>
 	<br>
 <% end %>

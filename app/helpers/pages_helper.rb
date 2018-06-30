@@ -51,4 +51,5 @@ module PagesHelper
     @teacher = Teacher.find_by(id: Course.find_by(id: cid).teacher_id)
   end
 
+
 end
