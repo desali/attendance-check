@@ -32,6 +32,7 @@ module PagesHelper
     @arr[:course_ids] = teacher.courses.connection.select_values(tid)
     return @arr
   end
+
   def what_is_groups_of?(course_id)
     course = Course.find_by(id: course_id)
 
@@ -46,7 +47,7 @@ module PagesHelper
     return @arr
   end
 
-  def confirm
+  def confirm()
 
   end
 
