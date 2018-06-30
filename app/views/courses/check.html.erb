@@ -1,6 +1,8 @@
 <%= form_tag methods: :post do  %>
-  <% (@course.groups.all).each do |value| %>
-    <%= radio_button_tag value.name, value.id %>
+
+  <% (@students.all).each do |student| %>
+    <%= radio_button_tag student.name, student.id %>
+    <br>
   <% end %>
   <%=  submit_tag 'submit' %>
 <% end %>

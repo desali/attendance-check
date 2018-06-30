@@ -24,8 +24,9 @@ class CoursesController < ApplicationController
   end
 
   def check
-    # @course = Course.find(params[:id])
-    # @groups = []
+    @course = Course.find(params[:id])
+    @group = @course.groups.find_by(name: params[:gr])
+    @students = @group.students
   end
 
   def send(send_params)

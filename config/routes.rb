@@ -19,9 +19,8 @@ Rails.application.routes.draw do
 
   get "/courses/new", to: "courses#new"
   post "/courses/new", to: "courses#create"
-  get "/courses/:id/check", to: "courses#check", as: "courses_check"
+  get "/courses/:id/:gr/check", to: "courses#check", as: "courses_check"
   get "/courses/:id/:gr", to: "courses#show", as: "course"
-  post "/courses/:id/check", to: "courses#send", as: "courses_check_send"
   delete "/courses/:id", to: "courses#destroy", as: "courses_delete"
 
   post "/group/:id/join", to: "students#join", as: "group_join"
