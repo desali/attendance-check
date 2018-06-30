@@ -27,6 +27,18 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     @group = @course.groups.find_by(name: params[:gr])
     @students = @group.students
+
+    order = Notification.order("subject_id DESC").first
+    if order.nil?
+      subj=0
+    else
+      subj = order.subject_id+1
+    end
+
+    @students.each do |student|
+      student.notifications.create(group_id: @group.id, subject_id: subj)
+    end
+
   end
 
   def send(send_params)

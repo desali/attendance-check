@@ -9,6 +9,9 @@ class StudentsController < ApplicationController
 
     if @student.save
       log_in_st @student
+      # cookies[:student_id]=@student.id
+      # cookies[:student_firstname]=@student.firstname
+      # cookies[:student_lastname]=@student.lastname
       redirect_to root_url
     else
       render 'new'

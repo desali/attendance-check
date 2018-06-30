@@ -1,8 +1,7 @@
-<%= form_tag methods: :post do  %>
-
-  <% (@students.all).each do |student| %>
-    <%= radio_button_tag student.name, student.id %>
-    <br>
-  <% end %>
-  <%=  submit_tag 'submit' %>
+List of notificated students
+<br>
+<% (@students.all).each do |student| %>
+  <%= student.firstname+" "+student.lastname %>
+  <br>
 <% end %>
+<br>
