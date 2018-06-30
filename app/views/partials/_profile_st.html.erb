@@ -1,0 +1,11 @@
+Student profile
+<br>
+<%= get_student.firstname %>
+<br>
+<%= get_student.lastname %>
+<br>
+<%= get_student.email %>
+<br>
+<% unless get_student.avatar.attachment.nil? %>
+	<%= image_tag get_student.avatar %>
+<% end %>

@@ -17,6 +17,28 @@ class CoursesController < ApplicationController
     end
   end
 
+  def show
+    @course = Course.find(params[:id])
+    @gr_id = @course.groups.find_by(name: params[:gr]).id
+    @all = Attendant.where(group_id: @gr_id)
+  end
+
+  def check
+    # @course = Course.find(params[:id])
+    # @groups = []
+  end
+
+  def send
+    # params[:group_id]
+  end
+
+  def destroy
+    @course = Course.find(params[:id])
+    @course.groups.destroy_all
+    @course.destroy
+    redirect_to root_url
+  end
+
   private
 
   def course_params

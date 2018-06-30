@@ -1,0 +1,13 @@
+<% @course.groups.each do |group| %>
+  <%= link_to group.name, group.name %>
+<% end %>
+
+<% @all.order(:subject_id).reverse_order.group_by(&:subject_id).each do |atten_list|%>
+  <br>
+  <br>
+  <br>
+  <% atten_list.second.each do |atten| %>
+    <%= get_student_fullname(atten.student_id) %>
+    <br>
+  <% end %>
+<% end %>

@@ -13,6 +13,7 @@ class Teacher < ApplicationRecord
   before_save { email.downcase! }
 
   has_secure_password
+  has_one_attached :avatar
   has_many :courses
   has_many :groups, through: :courses
 
