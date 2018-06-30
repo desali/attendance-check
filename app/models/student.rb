@@ -17,6 +17,7 @@ class Student < ApplicationRecord
   has_and_belongs_to_many :groups
   has_many :attendants
   has_many :courses, through: :groups
+  has_many :notifications
 
   validates :firstname, presence: true, length: { minimum: 2, maximum: 50 }, format: { with: /\A[a-zA-Z.\-]+\Z/, message: "Only alphabetic characters."}
   validates :lastname, presence: true, length: { minimum: 2, maximum: 50 }, format: { with: /\A[a-zA-Z.\-]+\Z/, message: "Only alphabetic characters."}
