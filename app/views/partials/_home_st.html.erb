@@ -1,6 +1,6 @@
 <% st_logged_in? %>
 <% @current_user.courses.all.each do |x| %>
-  <%= "#{x.name} #{group?(x.id).name} #{teacher_fullname?(x.teacher_id)}" %>
+  <%= "#{x.name} #{group?(x.id).name} #{teacher_fullname?(teacher?(x.teacher_id))}" %>
   <%= link_to "DELETE", group_leave_path(group?(x.id)), method: :delete, data: {confirm: "Are you sure?"} %>
   <br>
 <% end %>

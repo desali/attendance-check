@@ -21,8 +21,8 @@ module PagesHelper
     @teachers = Teacher.all
   end
 
-  def teacher_fullname?(teacher)
-    teacher.firstname+" "+teacher.lastname
+  def teacher_fullname?(tt)
+    tt.firstname+" "+tt.lastname
   end
 
   def group?(cid) # Return group for a student, based on Course_id
@@ -41,6 +41,14 @@ module PagesHelper
       return nil
     end
     @groups = course.groups.all
+  end
+
+  def course?(gr_id) # Return course based on group
+    @course = Course.find_by(id: Group.find_by(id: gr_id).course_id)
+  end
+
+  def teacher?(cid) # Return teacher based on course
+    @teacher = Teacher.find_by(id: Course.find_by(id: cid).teacher_id)
   end
 
 end

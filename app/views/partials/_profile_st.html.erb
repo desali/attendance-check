@@ -1,12 +1,18 @@
 Student profile
 <br>
-<%= get_student.firstname %>
+<%= @student.firstname %>
 <br>
-<%= get_student.lastname %>
+<%= @student.lastname %>
 <br>
-<%= get_student.email %>
+<%= @student.email %>
 <br>
-<% unless get_student.avatar.attachment.nil? %>
-	<%= image_tag get_student.avatar %>
+<% unless @student.avatar.attachment.nil? %>
+	<%= image_tag @student.avatar %>
 <% end %>
 <br>
+<% @notify.each do |x| %>
+	<% course?(x.group_id) %>
+	<% teacher?(@course.id) %>
+	<%= @course.name + " | " + teacher_fullname?(@teacher)%>
+	<br>
+<% end %>
