@@ -1,3 +1,24 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.home-teacher {
+  padding: 2rem;
+
+  .row {
+    padding: 0 13rem;
+
+    .form-search {
+      min-width: 30rem;
+      width: auto;
+      flex-grow: 1;
+
+      .btn-search {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+
+    
+  }
+}
