@@ -1,8 +1,9 @@
 <%= link_to 'Create course', courses_new_path %>
-
 <br>
-
 <% get_teacher_courses.each do |course| %>
   <%= "Course name: #{course.name}, #{course.group_count} groups" %>
+  <%= link_to "open", course_path(course, "A") %>
+  <%= link_to "check", courses_check_path() %>
+  <%= link_to "del", courses_delete_path(course), method: :delete, data: { confirm: 'Are you sure?' } %>
   <br>
 <% end %>

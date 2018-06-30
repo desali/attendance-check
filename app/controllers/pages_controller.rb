@@ -1,5 +1,9 @@
 class PagesController < ApplicationController
   def index
-    @stu = "me"
+
+  end
+
+  def profile
+    
   end
 end

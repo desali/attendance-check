@@ -8,6 +8,15 @@ module PagesHelper
     current_user_tch.courses
   end
 
+  def get_student
+    return current_user_st
+  end
+
+  def get_student_fullname(id)
+    @student = Student.find(id)
+    return "#{@student.firstname} #{@student.lastname}"
+  end
+
   def teachers_name? # Returns all teacher's names in map\dict\hash
     @arr = Hash.new()
     @arr[:firstname] = Teacher.connection.select_values(Teacher.select(:firstname).to_sql)
