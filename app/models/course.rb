@@ -2,9 +2,10 @@
 #
 # Table name: courses
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  teacher_id :integer
+#  id          :integer          not null, primary key
+#  name        :string
+#  teacher_id  :integer
+#  group_count :integer
 #
 
 class Course < ApplicationRecord

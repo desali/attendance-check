@@ -28,8 +28,8 @@ class CoursesController < ApplicationController
     # @groups = []
   end
 
-  def send
-    # params[:group_id]
+  def send(send_params)
+    params[:group_id]
   end
 
   def destroy
@@ -43,5 +43,9 @@ class CoursesController < ApplicationController
 
   def course_params
     params.require(:course).permit(:name, :group_count)
+  end
+
+  def send_params
+    params.permit(:group_id)
   end
 end

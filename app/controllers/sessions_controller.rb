@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
       log_in_tch user
       redirect_to root_url
     else
-      # ERROR MESSAGE
+      flash.now[:danger] = "Invalid login or password"
       render 'new_tch'
     end
   end
