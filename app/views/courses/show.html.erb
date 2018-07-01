@@ -24,8 +24,15 @@
         </tr>
       </thead>
       <tbody>
+        <% @subb = @all.order("subject_id DESC").first %>
+        <%= @all.first.subject_id%>
+        <% @all.where(subject_id: @subb).each do |x| %>
+          <%= x.firstname %>
+        <% end %>
         <% @all.order(:subject_id).reverse_order.group_by(&:subject_id).first do |atten_list|%>
+
           <% atten_list.second.each do |atten| %>
+
             <tr>
               <th scope="row"><%= atten.student_id %></th>
               <td><%= get_student_by_id(atten.student_id).firstname %></td>
