@@ -1,15 +1,41 @@
-<% @course.groups.each do |group| %>
-  <%= link_to group.name, group.name %>
-<% end %>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with group groups">
+      <div class="btn-group btn-group-lg" mr-2" role="group" aria-label="Group group">
+        <% @course.groups.each do |group| %>
+          <%= link_to group.name, group.name, class: "btn btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
 
-<% @all.order(:subject_id).reverse_order.group_by(&:subject_id).each do |atten_list|%>
-  <br>
-  <br>
-  <br>
-  <% atten_list.second.each do |atten| %>
-    <%= get_student_fullname(atten.student_id) %>
-    <br>
-  <% end %>
-<% end %>
-<br>
-<%= link_to "Take New Attendance of group #{params[:gr]}!", courses_check_path() %>
+    <%= link_to "Check #{params[:gr]}! <i class='fa fa-check-circle'></i>".html_safe, courses_check_path(), class: "check-button" %>
+  </div>
+
+
+  <div class="row mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Email</th>
+          <th scope="col">Group</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @all.order(:subject_id).reverse_order.group_by(&:subject_id).first do |atten_list|%>
+          <% atten_list.second.each do |atten| %>
+            <tr>
+              <th scope="row"><%= atten.student_id %></th>
+              <td><%= get_student_by_id(atten.student_id).firstname %></td>
+              <td><%= get_student_by_id(atten.student_id).lastname %></td>
+              <td><%= get_student_by_id(atten.student_id).email %></td>
+              <td>params[:gr]</td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

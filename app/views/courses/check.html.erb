@@ -1,7 +1,30 @@
-List of notificated students
-<br>
-<% (@students.all).each do |student| %>
-  <%= student.firstname+" "+student.lastname %>
-  <br>
-<% end %>
-<br>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h2>List of notificated students</h2>
+  </div>
+
+  <div class="row mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Email</th>
+          <th scope="col">Group</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% (@students.all).each do |student| %>
+          <tr>
+            <th scope="row"><%= student.id %></th>
+            <td><%= student.firstname %></td>
+            <td><%= student.lastname %></td>
+            <td><%= student.email %></td>
+            <td>params[:gr]</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

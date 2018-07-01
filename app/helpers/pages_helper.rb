@@ -8,8 +8,16 @@ module PagesHelper
     current_user_tch.courses
   end
 
+  def get_teacher_by_id(id)
+    @teacher = Teacher.find(id)
+  end
+
   def get_student
     return current_user_st
+  end
+
+  def get_student_by_id(id)
+    @student = Student.find(id)
   end
 
   def get_student_fullname(id)
@@ -21,6 +29,10 @@ module PagesHelper
     @teachers = Teacher.all
   end
 
+  def get_course_by_id(id)
+    @course = Course.find_by(id: id)
+  end
+
   def teacher_fullname?(tt)
     tt.firstname+" "+tt.lastname
   end
@@ -30,7 +42,7 @@ module PagesHelper
   end
 
   def what_is_courses_of?(teacher) # Return all courses of given teacher
-    if (teacher.courses.nil?) # Check if teacher has 0 courses
+    if (!teacher || teacher.courses.nil?) # Check if teacher has 0 courses
       return nil
     end
     @courses = teacher.courses.all

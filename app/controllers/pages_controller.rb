@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def index
-
+    @course = Course.new
+    @joinArgs = " "
   end
 
   def profile

@@ -1,21 +1,79 @@
-<% st_logged_in? %>
-<% @current_user.courses.all.each do |x| %>
-  <%= "#{x.name} #{group?(x.id).name} #{teacher_fullname?(teacher?(x.teacher_id))}" %>
-  <%= link_to "DELETE", group_leave_path(group?(x.id)), method: :delete, data: {confirm: "Are you sure?"} %>
-  <br>
-<% end %>
+<div class="container home-student">
+  <div class="row d-flex justify-content-center">
+    <form class="form-search mr-3">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-btn">
+          <button class="btn btn-default btn-search" type="submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
 
-<br>
-<br>
+    <button class='btn btn-success' data-toggle="modal" data-target="#joinGroupModal">
+      <i class="fa fa-user-plus"></i>
+    </button>
+  </div>
 
-<% teachers? %>
-<%= select("teacher", "id", @teachers.collect {|u| [teacher_fullname?(u), u.id]}, {:include_blank => 'None'}, {:class => 'teachers_selection'}) %><br>
-<% if !@course.nil? %>
-  <% select("course", "id", @courses.collect {|u| [u.name, u.id]}, {:include_blank => 'None'}, {:class => 'courses_selection'}) %> <br>
-<% end %>
-<br>
-<br>
-<%= what_is_courses_of?(@teachers.second) %># Короче! в Js будут выбиратся элементы из массива
-<%= @courses.first.name %>
-<%= what_is_groups_of?(@courses.first) %>
-<% link_to "Confirm", group_join_path(@groups.first.id) %>
+  <div class="row mt-4">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Course name</th>
+          <th scope="col">Group name</th>
+          <th scope="col">Teacher name</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% st_logged_in? %>
+        <% @current_user.courses.all.each do |x| %>
+          <tr>
+            <th scope="row"><%= x.id %></th>
+            <td><%= x.name %></td>
+            <td><%= group?(x.id).name %></td>
+            <td><%= teacher_fullname?(teacher?(x.teacher_id)) %></td>
+            <td><%= link_to '<i class="fa fa-trash fa-2x"></i>'.html_safe, group_leave_path(group?(x.id)), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="joinGroupModal" tabindex="-1" role="dialog" aria-labelledby="joinGroupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="joinGroupModalLabel">Join group</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <%= form_for(@joinArgs, url: group_join_path(:group_id)) do |form| %>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="teacher_id" class="col-form-label">Teacher:</label>
+            <%= form.collection_select :teacher_id, Teacher.order(:firstname), :id, :firstname, include_blank: true, id: "teacher_select_id" %>
+          </div>
+          <div class="form-group">
+            <label for="course_select_id" class="col-form-label">Course:</label>
+          </div>
+             <%= form.grouped_collection_select :course_id, Teacher.order(:id), :id, :courses, :name, :id, id: 'course_select_id' %>
+          <div class="form-group">
+            <label for="group_id" class="col-form-label">Course:</label>
+             <%= form.grouped_collection_select :group_id, Course.order(:name), :groups, :name, :id, id: "group_select_id" %>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <%= form.submit "Create course", class: "btn btn-primary" %>
+      </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
