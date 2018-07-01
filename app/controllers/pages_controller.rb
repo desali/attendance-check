@@ -5,8 +5,9 @@ class PagesController < ApplicationController
   end
 
   def profile
-    @student = get_student
-    @notify = @student.notifications.all
+    if st_logged_in?
+      @student = get_student
+      @notify = @student.notifications.all
   end
 
   def get_courses

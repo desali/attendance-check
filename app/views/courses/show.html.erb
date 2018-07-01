@@ -24,23 +24,17 @@
         </tr>
       </thead>
       <tbody>
-        <% @subb = @all.order("subject_id DESC").first %>
-        <%= @all.first.subject_id%>
-        <% @all.where(subject_id: @subb).each do |x| %>
-          <%= x.firstname %>
-        <% end %>
-        <% @all.order(:subject_id).reverse_order.group_by(&:subject_id).first do |atten_list|%>
 
-          <% atten_list.second.each do |atten| %>
+        <% @all.order(:subject_id).reverse_order.group_by(&:subject_id).each do |atten_list|%>
 
-            <tr>
-              <th scope="row"><%= atten.student_id %></th>
-              <td><%= get_student_by_id(atten.student_id).firstname %></td>
-              <td><%= @student.lastname %></td>
-              <td><%= @student.email %></td>
-              <td>params[:gr]</td>
-            </tr>
-          <% end %>
+          <tr>
+            <th scope="row"><%= atten_list.second.first.student_id %></th>
+            <td><%= get_student_by_id(atten_list.second.first.student_id).firstname %></td>
+            <td><%= @student.lastname %></td>
+            <td><%= @student.email %></td>
+            <td><%= params[:gr] %></td>
+          </tr>
+
         <% end %>
       </tbody>
     </table>

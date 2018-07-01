@@ -11,6 +11,7 @@
 
   <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
     <ul class="navbar-nav w-100">
+      <% st_logged_in? || tch_logged_in? %>
       <% if !st_logged_in? || !tch_logged_in? %>
 
         <div class="dropdown">
