@@ -1,46 +1,45 @@
-Student profile
 <%session[:x_1]=51.148913%>
 <%session[:y_1]=71.379933%>
-
 <%session[:x_2]=0%>
 <%session[:y_2]=0%>
-
-
-<br>
-<%= @student.firstname %>
-<br>
-<%= @student.lastname %>
-<br>
-<%= @student.email %>
-<br>
-<%= request.location.city %>
-
-<br>
-<% unless @student.avatar.attachment.nil? %>
-	<%= image_tag @student.avatar %>
-<% end %>
-<br>
-
 <script>
-  getGeoLocation();
+	getGeoLocation();
 </script>
-<br>
 <%session[:x_2]=cookies[:x_2]%>
-<br>
 <%session[:y_2]=cookies[:y_2]%>
 
-<%=session[:x_2]%>
-<br>
-<%=session[:y_2]%>
-<% @notify.each do |x| %>
-	<% course?(x.group_id) %>
-	<% teacher?(@course.id) %>
-	<%= @course.name + " | " + teacher_fullname?(@teacher)%>
-	<%= link_to "Attend!", confirm_path(x.id), method: :post, class: "attend"%>
+<div class="d-flex p-3">
+   <div class="d-flex>
+		 <div class="card" style="width: 18rem;">
+    	<%= image_tag @student.avatar, class: "card-img-top" %>
+   		<div class="card-body">
+     	<h5 class="card-title"><%= "Fullname: #{@student.firstname} #{@student.lastname}" %></h5>
+     	<p class="card-text"><%= "Email: #{@student.email}" %></p>
+ 		</div>
+	</div>
 
-	<br>
-<% end %>
+ <div class="container p-4">
+   <h2>Notifications:</h2>
 
-<%if flash[:error]%>
-	<%= flash[:error]%>
-<%end%>
+   <table class="table table table-hover">
+     <thead>
+       <tr>
+         <th>Course name</th>
+         <th>Teacher name</th>
+         <th>Confirm</th>
+       </tr>
+     </thead>
+     <tbody>
+			 <% @notify.each do |x| %>
+				 <tr>
+					 <% course?(x.group_id) %>
+					 <td><%= @course.name %></td>
+					 <% teacher?(@course.id) %>
+					 <td><%= teacher_fullname?(@teacher) %></td>
+					 <td><%= link_to "Attend!", confirm_path(x.id), method: :post, class: "attend"%></td>
+				 </tr>
+			 <% end %>
+     </tbody>
+   </table>
+  </div>
+</div>

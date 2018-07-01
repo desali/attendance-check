@@ -19,12 +19,9 @@ Rails.application.routes.draw do
 
   get "/courses/new", to: "courses#new"
   post "/courses/new", to: "courses#create"
-<<<<<<< current
+
   get "/courses/:id/:gr/check", to: "courses#check", as: "courses_check"
-=======
-  get "/courses/:id/check", to: "courses#check", as: "courses_check"
-  post "/courses/:id/check", to: "courses#send", as: "courses_check_send"
->>>>>>> before discard
+
   get "/courses/:id/:gr", to: "courses#show", as: "course"
   delete "/courses/:id", to: "courses#destroy", as: "courses_delete"
 
