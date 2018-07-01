@@ -29,8 +29,8 @@
             <tr>
               <th scope="row"><%= atten.student_id %></th>
               <td><%= get_student_by_id(atten.student_id).firstname %></td>
-              <td><%= get_student_by_id(atten.student_id).lastname %></td>
-              <td><%= get_student_by_id(atten.student_id).email %></td>
+              <td><%= @student.lastname %></td>
+              <td><%= @student.email %></td>
               <td>params[:gr]</td>
             </tr>
           <% end %>
