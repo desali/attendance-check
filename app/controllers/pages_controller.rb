@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
   def index
     @course = Course.new
-    @joinArgs = " "
+    @joinArgs = Attendant.new
   end
 
   def profile
@@ -17,6 +17,7 @@ class PagesController < ApplicationController
     @noti = Notification.find_by(id: params[:nid])
     # Get Geo location
     #getGeo()
+    puts distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000
     if distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000 < 250
       @student = get_student
       a = @student.attendants.new(group_id: @noti.group_id, subject_id: @noti.subject_id)
@@ -26,6 +27,7 @@ class PagesController < ApplicationController
     end
     # Validate with Geo of university
 
+    redirect_to profile_path
   end
 
 end

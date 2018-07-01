@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
 
   def join
     st_logged_in?
-    g = Group.find_by(id: params[:id])
+    g = Group.find_by(id: params["attendant"]["group_id"])
     g.students << @current_user
     redirect_to root_url
   end

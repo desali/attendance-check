@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get "/courses/:id/:gr", to: "courses#show", as: "course"
   delete "/courses/:id", to: "courses#destroy", as: "courses_delete"
 
-  post "/group/:id/join", to: "students#join", as: "group_join"
+  post "/group/join", to: "students#join", as: "group_join"
   delete "/group/:id/leave", to: "students#leave", as: "group_leave"
 
   get "/get_courses", to: "pages#get_courses"

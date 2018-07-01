@@ -34,7 +34,7 @@
             <th scope="row"><%= x.id %></th>
             <td><%= x.name %></td>
             <td><%= group?(x.id).name %></td>
-            <td><%= teacher_fullname?(teacher?(x.teacher_id)) %></td>
+            <td><%= teacher_fullname?(teacher?(x.id)) %></td>
             <td><%= link_to '<i class="fa fa-trash fa-2x"></i>'.html_safe, group_leave_path(group?(x.id)), method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
         <% end %>
@@ -53,24 +53,24 @@
         </button>
       </div>
 
-      <%= form_for(@joinArgs, url: group_join_path(:group_id)) do |form| %>
+      <%= form_for(@joinArgs, url: group_join_path()) do |form| %>
       <div class="modal-body">
           <div class="form-group">
-            <label for="teacher_id" class="col-form-label">Teacher:</label>
-            <%= form.collection_select :teacher_id, Teacher.order(:firstname), :id, :firstname, include_blank: true, id: "teacher_select_id" %>
+            <label for="teacher_select_id" class="col-form-label">Teacher:</label>
+            <%= form.collection_select :teacher_id, Teacher.order(:id), :id, :firstname, { include_blank: true }, { id: 'teacher_select_id', class: 'form-control' } %>
           </div>
           <div class="form-group">
             <label for="course_select_id" class="col-form-label">Course:</label>
+            <%= form.grouped_collection_select :course_id, Teacher.order(:id), :courses, :firstname, :id, :name, { include_blank: true }, { id: 'course_select_id', class: 'form-control' } %>
           </div>
-             <%= form.grouped_collection_select :course_id, Teacher.order(:id), :id, :courses, :name, :id, id: 'course_select_id' %>
           <div class="form-group">
-            <label for="group_id" class="col-form-label">Course:</label>
-             <%= form.grouped_collection_select :group_id, Course.order(:name), :groups, :name, :id, id: "group_select_id" %>
+            <label for="group_select_id" class="col-form-label">Course:</label>
+            <%= form.grouped_collection_select :group_id, Course.order(:id), :groups, :name, :id, :name, { include_blank: true }, { id: 'group_select_id', class: 'form-control' } %>
           </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <%= form.submit "Create course", class: "btn btn-primary" %>
+        <%= form.submit "Join!", class: "btn btn-primary" %>
       </div>
       <% end %>
 
