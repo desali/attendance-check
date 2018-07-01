@@ -2,6 +2,10 @@ Student profile
 <%session[:x_1]=51.148913%>
 <%session[:y_1]=71.379933%>
 
+<%session[:x_2]=0%>
+<%session[:y_2]=0%>
+
+
 <br>
 <%= @student.firstname %>
 <br>
@@ -17,16 +21,17 @@ Student profile
 <% end %>
 <br>
 
-<% unless @lat_lng %>
 <script>
   getGeoLocation();
 </script>
-<% end %>
 <br>
 <%session[:x_2]=cookies[:x_2]%>
 <br>
 <%session[:y_2]=cookies[:y_2]%>
 
+<%=session[:x_2]%>
+<br>
+<%=session[:y_2]%>
 <% @notify.each do |x| %>
 	<% course?(x.group_id) %>
 	<% teacher?(@course.id) %>
