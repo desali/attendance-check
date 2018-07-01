@@ -1,10 +1,18 @@
 Student profile
+<%session[:x_1]=51.148913%>
+<%session[:y_1]=71.379933%>
+
+<%session[:x_2]=0%>
+<%session[:y_2]=0%>
+
 <br>
 <%= @student.firstname %>
 <br>
 <%= @student.lastname %>
 <br>
 <%= @student.email %>
+<br>
+<%= Geocoder::Calculations.distance_between([51.148378, 71.380861], [51.148867, 71.379768]) %>
 <br>
 <% unless @student.avatar.attachment.nil? %>
 	<%= image_tag @student.avatar %>
@@ -17,3 +25,7 @@ Student profile
 	<%= link_to "Attend!", confirm_path(x.id), method: :post %>
 	<br>
 <% end %>
+
+<%if flash[:error]%>
+	<%= flash[:error]%>
+<%end%>

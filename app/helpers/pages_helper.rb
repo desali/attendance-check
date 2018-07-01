@@ -43,6 +43,10 @@ module PagesHelper
     @groups = course.groups.all
   end
 
+  def distance_between(x_1, y_1, x_2, y_2) # Return distance in km between two points
+    Geocoder::Calculations.distance_between([x_1,y_1], [x_2,y_2])
+  end
+
   def course?(gr_id) # Return course based on group
     @course = Course.find_by(id: Group.find_by(id: gr_id).course_id)
   end
