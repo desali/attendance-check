@@ -16,11 +16,16 @@ class PagesController < ApplicationController
   def confirm
     @noti = Notification.find_by(id: params[:nid])
     # Get Geo location
+    #getGeo()
+    if distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000 < 250
+      @student = get_student
+      a = @student.attendants.new(group_id: @noti.group_id, subject_id: @noti.subject_id)
+      a.save
+    else
+      flash[:error] = "You are not even at university!!!"
+    end
     # Validate with Geo of university
-    @student = get_student
-    a = @student.attendants.new(group_id: @noti.group_id, subject_id: @noti.subject_id)
-    a.save
-    puts a.errors.messages
+
   end
 
 end
