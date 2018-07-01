@@ -18,12 +18,12 @@ class PagesController < ApplicationController
     # Get Geo location
     #getGeo()
     puts "!!! #{distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000}"
-    if distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000 <= 1000
+    if distance_between(session[:x_1], session[:y_1], session[:x_2], session[:y_2])*1000 <= 10000
       @student = get_student
       a = @student.attendants.new(group_id: @noti.group_id, subject_id: @noti.subject_id)
       a.save
     else
-      flash[:error] = "You are not even at university!!!"
+      flash.now[:error] = "You are not even at university!!!"
     end
     # Validate with Geo of university
 

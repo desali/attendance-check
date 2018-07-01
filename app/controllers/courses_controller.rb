@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
 
     order = Notification.order("subject_id DESC").first
     if order.nil?
-      subj=0
+      subj=1
     else
       subj = order.subject_id+1
     end
