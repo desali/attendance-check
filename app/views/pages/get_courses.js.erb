@@ -1,0 +1,5 @@
+$(".course_selection").empty();
+$(".course_selection").append( $('<option> Select the Course </option>') )
+<% @courses.each do |course| %>
+  $('.contact_selection').append($('<option value="<%= course.id %>"><%= course.name %></option>'));
+<% end %>

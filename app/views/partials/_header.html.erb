@@ -1,0 +1,57 @@
+<nav class="header navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="KNL d-flex justify-content-center align-items-center">
+    <a class="logo-image-link" href="/">
+      <img class="logo-image" src="/images/logo.png">
+    </a>
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
+    <ul class="navbar-nav w-100">
+      <% if !st_logged_in? || !tch_logged_in? %>
+
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Login
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div class="nav-item dropdown-item">
+              <a class="nav-link dropdown-item" style="color: #000" href="/login">Login as Student</a>
+            </div>
+
+            <div class="nav-item dropdown-item">
+              <a class="nav-link dropdown-item" style="color: #000" href="/edu/login">Login as Teacher</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="dropdown mx-3">
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Registration
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <div class="nav-item">
+              <a class="nav-link" style="color: #000" href="/signup">Register as Student</a>
+            </div>
+
+            <div class="nav-item">
+              <a class="nav-link" style="color: #000" href="/edu/signup">Register as Teacher</a>
+            </div>
+          </div>
+        </div>
+
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Profile", profile_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

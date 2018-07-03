@@ -11,11 +11,8 @@
 #
 
 class Attendant < ApplicationRecord
-  has_and_belongs_to_many :students
-  belongs_to :groups
+  belongs_to :students, optional: true
 
-  validates :teacher_id, presence: true
-  validates :course_id, presence: true
   validates :group_id, presence: true
   validates :student_id, presence: true
   validates :subject_id, presence: true

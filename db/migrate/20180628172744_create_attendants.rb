@@ -7,5 +7,9 @@ class CreateAttendants < ActiveRecord::Migration[5.2]
       t.integer :student_id
       t.integer :subject_id
     end
+    add_index :attendants, [:group_id]
+    add_index :attendants, [:student_id]
+    add_index :attendants, [:subject_id]
+    add_index :attendants, [:group_id, :student_id, :subject_id], unique: true
   end
 end

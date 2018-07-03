@@ -1,0 +1,21 @@
+<!-- <% if !flash[:danger].nil? %>
+  <h1><%= flash[:danger] %></h1>
+<% end %> -->
+
+<div class="login-page">
+  <img class="register-bg" src="images/register-background.jpg" alt="">
+
+  <div id="login-form" class="login-form">
+    <h1>Student Login</h1>
+    <fieldset>
+      <%= form_for(:session, url: login_path) do |f|%>
+          <%= f.label :email %>
+        	<%= f.text_field :email, placeholder: "E-Mail", class: 'form-control' %>
+
+          <%= f.label :password %>
+      		<%= f.password_field :password, placeholder: "Password", class: 'form-control' %>
+      	<%= f.submit "Login" %>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

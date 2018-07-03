@@ -10,6 +10,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "partials/header" %>
+
+    <div class="main-content">
+      <%= yield %>
+    </div>
+
+    <%= render "partials/footer" %>
   </body>
 </html>
